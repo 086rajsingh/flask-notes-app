@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card dashboard">
+
+    <div class="top">
+        <h2>📝 My Notes</h2>
+        <button onclick="toggleDark()">🌙</button>
+
+<script>
+function toggleDark() {
+    document.documentElement.classList.toggle("dark");
+}
+</script>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <form method="POST">
+        <textarea name="content" placeholder="Write something amazing..." required></textarea>
+        <button>Add Note</button>
+    </form>
+
+    {% for note in notes %}
+        <div class="note">
+            {{ note.content }}
+
+            <div class="actions">
+                <a href="{{ url_for('edit', id=note.id) }}">✏ Edit</a>
+
+                <form action="{{ url_for('delete', id=note.id) }}" method="POST">
+                    <button class="delete-btn">🗑 Delete</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+[22:18, 2/11/2026] ⚔️Raj Pratap Singh⚔️: <!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card dashboard">
+
+    <div class="top">
+        <h2>Your Notes</h2>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <form method="POST">
+        <textarea name="content" placeholder="Write a note..." required></textarea>
+        <button type="submit">Add Note</button>
+    </form>
+
+    {% for note in notes %}
+        <div class="note">
+            {{ note.content }}
+
+            <div class="actions">
+                <a href="{{ url_for('edit', id=note.id) }}">Edit</a>
+
+                <form action="{{ url_for('delete', id=note.id) }}" method="POST">
+                    <but…
+[22:22, 2/11/2026] ⚔️Raj Pratap Singh⚔️: /* Google font jaisa smooth look */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Gradient animated background */
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c92d2);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glass card */
+.card {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 30px;
+    width: 380px;
+    color: white;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+/* Heading */
+.card h2 {
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+/* Inputs */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #2c5364;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Links */
+a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Dashboard width */
+.dashboard {
+    width: 420px;
+}
+
+/* Top bar */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Note card */
+.note {
+    background: rgba(255,255,255,0.2);
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+}
+
+.dark body {
+    background: #0d1117;
+}
+
+.dark .card {
+    background: #161b22;
+    color: white;
+}
